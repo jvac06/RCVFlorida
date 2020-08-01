@@ -36,4 +36,4 @@ CREATE TABLE IF NOT EXISTS places(
     voters INTEGER NOT NULL,
     FOREIGN KEY(subdiv_id) REFERENCES subdivisions(id)
 );
-CREATE UNIQUE INDEX IF NOT EXISTS idx_places_fips ON places(fips);
+CREATE INDEX IF NOT EXISTS idx_places_fips ON places(fips);
