@@ -4,6 +4,7 @@ import pandas as pd
 import sqlite3
 import ssl
 import re
+import os
 pd.set_option('display.expand_frame_repr', False)
 pd.set_option('display.precision', 2)
 
@@ -63,10 +64,10 @@ tampa.head(2)
 
 # %%
 # # checking how to access state, county, subdivision, places values
+states = censusdata.geographies(censusdata.censusgeo([('state', '*')]),'acs5', 2018)
 counties = censusdata.geographies(censusdata.censusgeo([('state','12'),('county', '*')]), 'acs5', 2018)
 subdivisions = censusdata.geographies(censusdata.censusgeo([('state','12'), ('county', '057'), ('county subdivision', '*')]), 'acs5', 2018)
 places = censusdata.geographies(censusdata.censusgeo([('state','12'), ('county', '057'), ('county subdivision', '93367'), ('place/remainder (or part)', '*')]), 'acs5', 2018)
-states = censusdata.geographies(censusdata.censusgeo([('state', '*')]),'acs5', 2018)
 # %% 
 for state in states:
     print(state)
@@ -85,9 +86,8 @@ for division in subdivisions:
 
 # %%
 for place in places:
-    print(place)
-    # print(re.findall())
-    print(places[place].params())
+    print(place.split(',')[0])
+    # print(re.findall(r''))
     print(places[place].params()[3][1])
 
 # %%
