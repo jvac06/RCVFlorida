@@ -102,3 +102,5 @@ else:
                 break
     print('Created: "places" table')
 conn.close()
+
+#need to test different states
